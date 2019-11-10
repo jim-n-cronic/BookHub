@@ -50,9 +50,17 @@ router.get('/api/books/:id', (req,res, next) => {
 
 // PUT
 router.patch('/apibooks/:id', (req,res, next) => {
-    res.status(200).json({
-        message: "HANDLING PUT / at the SavedBooks"
-    });
+    const id = req.params.id;
+    const nuOPS = {};
+    for (const ops of req.body) {
+        nuOPS[ops.propName] = ops.value
+    }
+    Document.Documents.update({ _id: id }, { $set: nuOPS })
+    .exec()
+    .then(result => {
+        console.log(result);
+        res.status(200).json(result)
+    }).catch(err => console.log(err));
 });
 
 
