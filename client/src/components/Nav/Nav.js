@@ -1,24 +1,18 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-function NavBar(props) {
+const NavBar = () => {
+    
     return(
         <nav className="navbar expand-lg navbar-dark bg-dark mb-3 sticky-top">
             <div className="container">
-                <NavLink exact to="/" className="navbar-brand"><i className="fas fa-book-open"></i> BookHub </NavLink>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <NavLink to="/search" className="nav-link"><i className="fas fa-search"></i> Search </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/savedbooks" className="nav-link"><i className="fas fa-bookmark"></i> Favorites </NavLink>
-                        </li>
-                    </ul>
-                </div>
+                <NavLink 
+                    exact to="/" 
+                    className="navbar-brand">
+                    <i className="fas fa-book-open"></i> BookHub </NavLink>
+                <NavLink 
+                    exact to='/saved' 
+                    className='navbar-brand'>Saved Books</NavLink>
             </div>
         </nav>
     )

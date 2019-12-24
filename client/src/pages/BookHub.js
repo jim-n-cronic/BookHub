@@ -4,9 +4,9 @@ import Search from '../components/Search'
 import Title from '../components/Title'
 import SaveButton from '../components/SaveButton'
 import './style.css'
-import { Query } from 'mongoose';
+//import { Query } from 'mongoose';
 
-class BookHub extends React.Component {
+class BookHub extends Component {
 
     state = {
         books: [],
@@ -53,16 +53,20 @@ class BookHub extends React.Component {
     }
 
     //handleInputChange()
-    handleInputchange = (e) => {
-        this.setState({
-            searchQuery: e.target.value
-        });
-    }
+    // handleInputchange = (e) => {
+    //     this.setState({
+    //         searchQuery: e.target.value
+    //     });
+    // }
 
     //handleFormSubmit()
-    handleFormSubmit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
         this.googleSearch(this.state.searchQuery)
+    }
+    handleSearchChange = (event) => {
+      this.setState({ search: event.target.value });
+      // console.log("Form onSubmit Event data:\n", this.state.search);
     }
 
 
@@ -76,13 +80,25 @@ class BookHub extends React.Component {
             <ul className="list-unstyled">
               {this.state.books.map(book => {
                 return (
-                  <li className="media my-4 rounded shadow p-2" key={book.id}>
-                    <img src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : ""} className="mr-3" alt="..." />
+                  <li 
+                    className="media my-4 rounded shadow p-2" 
+                    key={book._id}>
+                    <img 
+                      src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : ""} 
+                      className="mr-3" alt="..." />
                     <div className="media-body">
-                      <h5 className="mt-0 mb-1">{book.volumeInfo.title} <span className="font-italic">by {book.volumeInfo.authors.join(", ")}</span></h5>
+                      <h5 
+                        className="mt-0 mb-1">{book.volumeInfo.title} 
+                          <span className="font-italic">by {book.volumeInfo.authors.join(", ")}</span>
+                      </h5>
                       <p className="overflow-auto description">{book.volumeInfo.description}</p>
-                      <a className="btn btn-primary" target="_blank" href={book.volumeInfo.infoLink}>View</a> {" "}
-                      <SaveButton key="book.id" book={book} savebook={this.saveBook} />
+                      <a 
+                        className="btn btn-primary"  
+                        href={book.volumeInfo.infoLink}>View</a> {" "}
+                      <SaveButton 
+                        key={book._id} 
+                        book={book} 
+                        savebook={this.saveBook} />
 
                     </div>
                   </li>

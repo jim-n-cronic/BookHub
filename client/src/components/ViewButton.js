@@ -4,7 +4,7 @@ function ViewButton(props) {
 
     return(
         <span>
-            <a className="btn btn-primary btn-sm text-light" href={props.bookLink} target="_blank">More details @ googleBooks</a>
+            <a className="btn btn-primary btn-sm text-light" href={props.bookLink} >More details @ googleBooks</a>
         </span>
     )
 }

@@ -1,6 +1,6 @@
 const express = require("express");
-//const path = require("path");
-const PORT = process.env.PORT || 3001;
+const path = require("path");
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 // Define expressMiddleware here
@@ -12,20 +12,21 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
-const { router } = require('./routes');
-app.use(router)
 
 // Send every other request to the React app
 // Define any API routes before this runs
 
 // MONGOOSE
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || "mongobd://localhost/thebookhub");
+// const mongoose = require('mongoose');
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/thebookhub");
 
+//const routes = require('./routes');
+//app.use(routes)
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 
 
 // yellaaaaaa << serverListener
